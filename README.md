@@ -27,7 +27,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|varchar(255)|null: false|
 |email|varchar(30)|null: false, unique|
 |password|varchar(20)|null: false, unique|
 
@@ -41,11 +41,12 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |group_id|integer|null: false, foreign_key: true|
-|name|string|null: false|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many :group_users
 - has_many :users, through: :group_users
+- has_many :messages
 
 ## group_usersテーブル
 
