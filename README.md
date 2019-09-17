@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-## userテーブル
+## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -40,7 +40,6 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|group_id|integer|null: false, foreign_key: true|
 |name|varchar(255)|null: false|
 
 ### Association
@@ -59,14 +58,14 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :group
 
-## messageテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
-|body|text|timestamps|
-|image|string|timestamps|
+|body|text||
+|image|string||
 
 ### Association
 - belongs_to :user
