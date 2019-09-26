@@ -1,0 +1,7 @@
+.chat-main__form__input-box
+  = form_for "chat-main__form__input-box--new-message" do |f|
+    = f.text_field :content, class: "chat-main__form__input-box--new-message--text", placeholder: "type a message"
+    = f.label :image, class: "chat-main__form__input-box--new-message--image" do
+      = fa_icon 'picture-o', class: 'icon'
+      = f.file_field :image, class: 'hidden'
+    = f.submit 'Send', class: 'chat-main__form__input-box--new-message--submit-btn'
