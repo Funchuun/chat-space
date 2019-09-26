@@ -1,7 +1,7 @@
 .chat-main__form__input-box
-  .chat-main__form__input-box--text  
-  .chat-main__form__input-box--image
-    = fa_icon 'image'
-    .chat-main__form__input-box--image--image-file
-  .chat-main__form__input-box--submit-btn
-    Send
+  = form_for "chat-main__form__input-box--new-message" do |f|
+    = f.text_field :content, class: "chat-main__form__input-box--new-message--text", placeholder: "type a message"
+    = f.label :image, class: "chat-main__form__input-box--new-message--image" do
+      = fa_icon 'picture-o', class: 'icon'
+      = f.file_field :image, class: 'hidden'
+    = f.submit 'Send', class: 'chat-main__form__input-box--new-message--submit-btn'
