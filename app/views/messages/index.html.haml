@@ -19,33 +19,18 @@
         .right-header__button
           Edit
     .messages
+      = render @messages
       .message
         .upper-message
           .upper-message__user-name
-            メンバー
+            = message.user.name
           .upper-message__date
-            2017/04/04
+            = message.created_at.strftime("%Y/%m/%d %H:%M")
         .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2017/04/04
-        .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2017/04/04
-        .lower-meesage
-          .lower-message__content
-            メッセージ
+          - if message.content.present?
+            %p.lower-message__content
+              = message.content
+          = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
     .form
       = form_for [@group, @message] do |f|
         = f.text_field :content, class: 'form__message', placeholder: 'type a message'
