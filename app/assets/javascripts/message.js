@@ -1,9 +1,6 @@
 $(function(){
   function buildHTML(message){
-    var insertImage = '';
-    if (message.image.url) {
-      insertImage = `<img src="${message.image.url}">`;
-    }
+    var insertImage = message.image.url ?  `<img src="${message.image.url}">` : '';
     var html = `<div class="message" data-id="${message.id}>
                     <div class="upper-message">
                       <div class="upper-message__user-name">
@@ -43,8 +40,8 @@ $(function(){
       var html = buildHTML(data);
       $('.messages').append(html);
       ScrollMessage();
-        $('#message_content').val('');
-        $('.form__textfield').val('');
+        // $('#message_content').val('');
+        $('.form__textfield')[0].reset();
       $('.form__submit').prop('disabled', false);
     })
     .fail(function(){
