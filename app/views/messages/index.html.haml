@@ -10,9 +10,10 @@
           %ul.left-header__members
             Member：
             %li.member
+              = @users.pluck(:name).join(",")
       .right-header
         .right-header__button
-          Edit
+          = link_to 'Edit', edit_group_path(@group.id), class: "btn"
     .messages
       = render @messages
     .form

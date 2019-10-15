@@ -40,7 +40,7 @@ $(function(){
       var html = buildHTML(data);
       $('.messages').append(html);
       ScrollMessage();
-        $('.form__textfield')[0].reset();
+        $('.new_message')[0].reset();
       $('.form__submit').prop('disabled', false);
     })
     .fail(function(){
