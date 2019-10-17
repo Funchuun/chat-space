@@ -47,58 +47,7 @@ $(function(){
       alert('no message');
     })
   })
-
-  var buildMessageHTML = function(message) {
-    if (message.content && message.image.url) {
-      var html = `<div class="message" data-id="${message.id}">
-                    <div class="upper-message">
-                      <div class="upper-message__user-name">
-                        ${message.user_name}
-                      </div>
-                      <div class="upper-message__date">
-                        ${message.created_at}
-                      </div>
-                    </div>
-                    <div class="lower-message">
-                      <p class="lower-message__content">
-                        ${message.content}
-                      </p>
-                      <img src="${message.image.url}" class="lower-message__image">
-                    </div>
-                  </div>`
-    } else if (message.content) {
-      var html = `<div class="message" data-id="${message.id}">
-                    <div class="upper-message">
-                      <div class="upper-message__user-name">
-                        ${message.user_name}
-                      </div>
-                      <div class="upper-message__date">
-                        ${message.created_at}
-                      </div>
-                    </div>
-                    <div class="lower-message">
-                      <p class="lower-message__content">
-                        ${message.content}
-                      </p>
-                    </div>
-                  </div>`
-    } else if (message.image.url) {
-      var html = `<div class="message" data-id="${message.id}">
-                    <div class="upper-message">
-                      <div class="upper-message__user-name">
-                        ${message.user_name}
-                      </div>
-                      <div class="upper-message__date">
-                        ${message.created_at}
-                      </div>
-                    </div>
-                    <div class="lower-message">
-                      <img src="${message.image.url}" class="lower-message__image">
-                    </div>
-                  </div>`
-    };
-    return html;
-  }
+a
   $(function() {
     var reloadMessages = function() {
       last_message_id = $('.message').last().data('id');
@@ -111,7 +60,7 @@ $(function(){
       })
       .done(function(data) {
         data.forEach(function(message) {
-          var insertHTML = buildMessageHTML(message);
+          var insertHTML = buildHTML(message);
           $('.messages').append(insertHTML);
           ScrollMessage();
             $('.new_message')[0].reset();
