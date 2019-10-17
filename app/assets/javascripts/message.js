@@ -1,13 +1,13 @@
 $(function(){
   function buildHTML(message){
-    var insertImage = message.image.url ?  `<img src="${message.image.url}">` : '';
-    var html = `<div class="message" data-id="${message.id}>
+    var image = message.image.url ?  `<img src="${message.image.url}">` : '';
+    var html = `<div class="message" data-id="${message.id}">
                     <div class="upper-message">
                       <div class="upper-message__user-name">
-                        ${message.name}
+                        ${message.user_name}
                       </div>
                       <div class="upper-message__date">
-                        ${message.date}
+                        ${message.created_at}
                       </div>
                     </div>
                     <div class="lower-message">
@@ -15,7 +15,7 @@ $(function(){
                         ${message.content}
                       </p>
                     </div>
-                    ${insertImage}
+                    ${image}
                   </div>`;
       return html;
   }
@@ -47,4 +47,80 @@ $(function(){
       alert('no message');
     })
   })
+
+  var buildMessageHTML = function(message) {
+    if (message.content && message.image.url) {
+      var html = `<div class="message" data-id="${message.id}">
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">
+                        ${message.user_name}
+                      </div>
+                      <div class="upper-message__date">
+                        ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <p class="lower-message__content">
+                        ${message.content}
+                      </p>
+                      <img src="${message.image.url}" class="lower-message__image">
+                    </div>
+                  </div>`
+    } else if (message.content) {
+      var html = `<div class="message" data-id="${message.id}">
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">
+                        ${message.user_name}
+                      </div>
+                      <div class="upper-message__date">
+                        ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <p class="lower-message__content">
+                        ${message.content}
+                      </p>
+                    </div>
+                  </div>`
+    } else if (message.image.url) {
+      var html = `<div class="message" data-id="${message.id}">
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">
+                        ${message.user_name}
+                      </div>
+                      <div class="upper-message__date">
+                        ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <img src="${message.image.url}" class="lower-message__image">
+                    </div>
+                  </div>`
+    };
+    return html;
+  }
+  $(function() {
+    var reloadMessages = function() {
+      last_message_id = $('.message').last().data('id');
+      var url = 'api/messages'
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(data) {
+        data.forEach(function(message) {
+          var insertHTML = buildMessageHTML(message);
+          $('.messages').append(insertHTML);
+          ScrollMessage();
+            $('.new_message')[0].reset();
+        });
+      })
+      .fail(function() {
+        alert('自動更新に失敗しました')
+      })
+    }
+    setInterval(reloadMessages, 5000);
+  });
 });
