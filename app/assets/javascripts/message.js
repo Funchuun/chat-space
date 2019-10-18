@@ -47,7 +47,7 @@ $(function(){
       alert('no message');
     })
   })
-  
+
   $(function() {
     var reloadMessages = function() {
       last_message_id = $('.message').last().data('id');
