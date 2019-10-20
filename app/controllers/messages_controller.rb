@@ -24,9 +24,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   private
 
   def message_params
@@ -35,6 +32,5 @@ class MessagesController < ApplicationController
 
   def set_group
     @group = Group.find(params[:group_id])
-    @users = @group.users
   end
 end
