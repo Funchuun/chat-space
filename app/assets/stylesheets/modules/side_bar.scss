@@ -7,14 +7,13 @@
     height: 100px;
     line-height: 100px;
     padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
     &__name {
-      display: inline-block;
       font-size: $side_header_font;
       font-weight: bold;
     }
     &__lists {
-      display: inline-block;
-      float: right;
       .list {
         display: inline-block;
       }
